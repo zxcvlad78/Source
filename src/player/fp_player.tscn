@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://b43thl6y1mqv6"]
+
+[ext_resource type="Script" uid="uid://btigi2atrewp7" path="res://src/player/fp_player.gd" id="1_5mybe"]
+[ext_resource type="Script" uid="uid://blipti8xdfg80" path="res://src/game_components/fp_movement_controller.gd" id="2_pxpxt"]
+[ext_resource type="Script" uid="uid://clbl4d7cc6aac" path="res://src/game_components/fp_player_physics.gd" id="3_3omqd"]
+[ext_resource type="Script" uid="uid://djaba2fh2yby" path="res://src/game_components/fp_camera_controller.gd" id="4_3xtqa"]
+[ext_resource type="Script" uid="uid://chjmyo3ptk1qk" path="res://src/game_components/hide_nodes_if_authority.gd" id="5_63v7j"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_63v7j"]
+frequency = 0.1626
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_63v7j"]
+noise = SubResource("FastNoiseLite_63v7j")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d8irq"]
+albedo_texture = SubResource("NoiseTexture2D_63v7j")
+texture_filter = 0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_63v7j"]
+material = SubResource("StandardMaterial3D_d8irq")
+
+[sub_resource type="SphereMesh" id="SphereMesh_3xtqa"]
+material = SubResource("StandardMaterial3D_d8irq")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_63v7j"]
+
+[node name="FpPlayer" type="CharacterBody3D"]
+script = ExtResource("1_5mybe")
+metadata/_custom_type_script = "uid://btigi2atrewp7"
+
+[node name="FP_PlayerPhysics" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("3_3omqd")
+player = NodePath("..")
+metadata/_custom_type_script = "uid://clbl4d7cc6aac"
+
+[node name="FP_MovementController" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_pxpxt")
+move_left = "left"
+move_right = "right"
+move_forward = "forward"
+move_backward = "backward"
+sprint = "sprint"
+jump = "jump"
+crouch = "crouch"
+player = NodePath("..")
+metadata/_custom_type_script = "uid://blipti8xdfg80"
+
+[node name="FP_CameraController" type="Node" parent="." node_paths=PackedStringArray("camera", "player")]
+script = ExtResource("4_3xtqa")
+camera = NodePath("../mesh/neck/Camera3D")
+aim = "aim"
+player = NodePath("..")
+metadata/_custom_type_script = "uid://djaba2fh2yby"
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_63v7j")
+
+[node name="neck" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="mesh/neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+fov = 90.0
+
+[node name="head" type="MeshInstance3D" parent="mesh/neck/Camera3D"]
+mesh = SubResource("SphereMesh_3xtqa")
+skeleton = NodePath("../..")
+
+[node name="HideNodesIfAuthority" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("5_63v7j")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://chjmyo3ptk1qk"
+
+[node name="collision_normal" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_63v7j")

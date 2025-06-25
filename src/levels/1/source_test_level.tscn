@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c26u5te67y4gh"]
+
+[ext_resource type="PackedScene" uid="uid://b43thl6y1mqv6" path="res://src/player/fp_player.tscn" id="1_5cht5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tvyis"]
+sky_top_color = Color(1, 0.245186, 0.188351, 1)
+sky_horizon_color = Color(0.793481, 0.620896, 0.391878, 1)
+sky_curve = 0.092336
+
+[sub_resource type="Sky" id="Sky_5cht5"]
+sky_material = SubResource("ProceduralSkyMaterial_tvyis")
+
+[sub_resource type="Environment" id="Environment_8q13f"]
+background_mode = 2
+sky = SubResource("Sky_5cht5")
+
+[node name="SourceTestLevel" type="Node3D"]
+
+[node name="env" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8q13f")
+
+[node name="sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.642788, -0.323744, 0.694272, 0, 0.906308, 0.422618, -0.766045, -0.271654, 0.582563, 0, 0, 0)
+light_color = Color(1, 0.714868, 0.669018, 1)
+
+[node name="floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, -0.8)
+use_collision = true
+size = Vector3(25, 0.1, 25)
+
+[node name="FpPlayer" parent="." instance=ExtResource("1_5cht5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
