@@ -4,4 +4,5 @@ class_name PlayerBaseComponent extends Node
 @export var player:FP_Player
 
 func _ready() -> void:
-	if !player: player = get_parent()
+	if !player:
+		player = get_parent()
