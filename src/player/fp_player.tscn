@@ -129,15 +129,19 @@ state_machine = NodePath("../state_machine")
 player = NodePath("..")
 metadata/_custom_type_script = "uid://blipti8xdfg80"
 
-[node name="FP_CameraController" type="Node" parent="." node_paths=PackedStringArray("camera", "player")]
+[node name="FP_CameraController" type="Node" parent="." node_paths=PackedStringArray("camera", "third_person_camera", "player")]
 script = ExtResource("4_3xtqa")
 camera = NodePath("../Camera3D")
+third_person_camera = NodePath("../Camera3D/Camera3D_third_person")
 aim = "aim"
 player = NodePath("..")
 metadata/_custom_type_script = "uid://djaba2fh2yby"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Camera3D_third_person" type="Camera3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527665, 1.80261)
 
 [node name="FootstepsSound" type="Node" parent="." node_paths=PackedStringArray("audio_player", "player")]
 script = ExtResource("8_30v2u")
@@ -167,10 +171,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
 script = ExtResource("77_fwt4f")
 metadata/_custom_type_script = "uid://m4rd2xovd0yt"
 
-[node name="HideNodesIfAuthority" type="Node" parent="." node_paths=PackedStringArray("target", "nodes")]
+[node name="HideNodesIfAuthority" type="Node" parent="." node_paths=PackedStringArray("nodes", "player")]
 script = ExtResource("5_63v7j")
-target = NodePath("..")
 nodes = [NodePath("../W_AnimatedModel3D")]
+player = NodePath("..")
 metadata/_custom_type_script = "uid://chjmyo3ptk1qk"
 
 [node name="W_AnimatedModel3D" parent="." instance=ExtResource("79_scwd0")]

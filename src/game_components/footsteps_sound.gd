@@ -37,9 +37,11 @@ func _ready() -> void:
 	if !audio_player:
 		audio_player = SD_MPSyncedAudioStreamPlayer3D.new()
 		player.add_child(audio_player)
+	if player.model:
+		player.model.on_footstep.connect(_do_footstep)
 
 func _do_footstep():
-	if !get(current_surface):
+	if !get(current_surface) or !player.is_on_floor():
 		return
 	
 	randomize()
@@ -47,5 +49,3 @@ func _do_footstep():
 	audio_player.stream = get(current_surface)[rand_idx]
 	
 	audio_player.play_synced()
-
-	print("footstep")

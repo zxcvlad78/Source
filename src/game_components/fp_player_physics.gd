@@ -8,3 +8,4 @@ func _process_gravity(delta: float):
 
 func _physics_process(delta: float) -> void:
 	_process_gravity(delta)
+	player.move_and_slide()

@@ -38,6 +38,7 @@ func _physics_process(_delta: float) -> void:
 			player.velocity.y += jump_accel
 	else:
 		state_machine.switch_by_name("floating")
+		return
 	
 	is_sprinting = Input.is_action_pressed(move_forward) and Input.is_action_pressed(sprint)
 	if is_sprinting:
@@ -51,17 +52,15 @@ func _physics_process(_delta: float) -> void:
 	
 	player.velocity.x = (direction.x * current_speed)
 	player.velocity.z = (direction.z * current_speed)
-	
+
 
 func set_tree_blend():
 	var player_velocity: Vector3 = player.velocity * player.transform.basis
 	var blend_position: Vector2 = Vector2(player_velocity.x, -player_velocity.z)
-	
+
 	player.model.set_tree_parameter("parameters/StateMachine/walk/blend_position", blend_position)
 	player.model.set_tree_parameter("parameters/StateMachine/run/blend_position", blend_position)
 
-
-	player.move_and_slide()
 
 func _on_state_machine_state_enter(state:SD_State):
 	player.model.tree.get("parameters/StateMachine/playback").travel(state.name)
