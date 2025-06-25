@@ -1,0 +1,1 @@
+extends W_AnimatedModel3D

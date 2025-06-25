@@ -10,7 +10,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
 		try_to_interact()
 
-func try_to_interact() -> W_Interactable3D:
+func try_to_interact() -> W_InteractableArea3D:
 	if not enabled:
 		return null
 	

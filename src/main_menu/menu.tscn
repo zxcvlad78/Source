@@ -1,0 +1,148 @@
+[gd_scene load_steps=10 format=3 uid="uid://djh1mmgq5yet7"]
+
+[ext_resource type="Script" uid="uid://bs3bs0mt3mbp6" path="res://src/main_menu/menu_script.gd" id="1_h5t6v"]
+[ext_resource type="Texture2D" uid="uid://ba2bojk1rwkta" path="res://menu_texture.tres" id="2_awcva"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="2_h5t6v"]
+[ext_resource type="Script" uid="uid://bdxogtd2p3ilm" path="res://src/game_components/source_button.gd" id="3_h5t6v"]
+[ext_resource type="Script" uid="uid://1yjekx2b6hnp" path="res://src/main_menu/loading_script.gd" id="4_ilxt0"]
+[ext_resource type="Script" uid="uid://blmjiijnw8fqo" path="res://addons/simusdev/resourceloader/SD_NodeResourceLoader.gd" id="4_w8i11"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w8i11"]
+font = ExtResource("2_h5t6v")
+font_size = 96
+font_color = Color(1, 0.760784, 0.760784, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w3a8n"]
+font = ExtResource("2_h5t6v")
+font_size = 21
+font_color = Color(0.431127, 0.403845, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_h5t6v"]
+font = ExtResource("2_h5t6v")
+font_size = 26
+font_color = Color(1, 0.784314, 0.819608, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h5t6v")
+
+[node name="bg_texture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_awcva")
+expand_mode = 1
+
+[node name="menu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="game_name" type="Label" parent="menu"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 35.0
+offset_right = 322.0
+offset_bottom = 131.0
+text = "Source"
+label_settings = SubResource("LabelSettings_w8i11")
+
+[node name="author" type="Label" parent="menu/game_name"]
+layout_mode = 0
+offset_left = 254.0
+offset_top = 78.0
+offset_right = 340.0
+offset_bottom = 100.0
+text = "by CrumbleZ"
+label_settings = SubResource("LabelSettings_w3a8n")
+
+[node name="buttons_container" type="VBoxContainer" parent="menu"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 207.0
+offset_right = 363.0
+offset_bottom = 648.0
+theme_override_constants/separation = 5
+
+[node name="start_game" type="Button" parent="menu/buttons_container"]
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_h5t6v")
+theme_override_font_sizes/font_size = 35
+text = "Start game"
+flat = true
+alignment = 0
+script = ExtResource("3_h5t6v")
+font_size = 35.0
+metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
+
+[node name="connect" type="Button" parent="menu/buttons_container"]
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_h5t6v")
+theme_override_font_sizes/font_size = 35
+text = "Connect"
+flat = true
+alignment = 0
+script = ExtResource("3_h5t6v")
+font_size = 35.0
+metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
+
+[node name="settings" type="Button" parent="menu/buttons_container"]
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_h5t6v")
+theme_override_font_sizes/font_size = 35
+text = "Setting"
+flat = true
+alignment = 0
+script = ExtResource("3_h5t6v")
+font_size = 35.0
+metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
+
+[node name="loading" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_ilxt0")
+
+[node name="label" type="Label" parent="loading"]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 469.0
+offset_right = 259.0
+offset_bottom = 496.0
+text = "Loading..."
+label_settings = SubResource("LabelSettings_h5t6v")
+
+[node name="loader" type="Node" parent="loading"]
+script = ExtResource("4_w8i11")
+initial_paths = Array[String](["res://"])
+metadata/_custom_type_script = "uid://blmjiijnw8fqo"
+
+[connection signal="loading_finished" from="loading/loader" to="loading" method="_on_loader_loading_finished"]
+[connection signal="loading_started" from="loading/loader" to="loading" method="_on_loader_loading_started"]

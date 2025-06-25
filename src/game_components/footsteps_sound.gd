@@ -37,18 +37,15 @@ func _ready() -> void:
 	if !audio_player:
 		audio_player = SD_MPSyncedAudioStreamPlayer3D.new()
 		player.add_child(audio_player)
-	
-	while true:
-		_do_footstep()
-		await get_tree().create_timer(1.0).timeout
 
 func _do_footstep():
 	if !get(current_surface):
 		return
 	
 	randomize()
-	
 	var rand_idx = randi()% (get(current_surface).size() - 1)
 	audio_player.stream = get(current_surface)[rand_idx]
 	
 	audio_player.play_synced()
+
+	print("footstep")

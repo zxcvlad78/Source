@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://b43thl6y1mqv6"]
+[gd_scene load_steps=84 format=3 uid="uid://b43thl6y1mqv6"]
 
 [ext_resource type="Script" uid="uid://btigi2atrewp7" path="res://src/player/fp_player.gd" id="1_5mybe"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_paxe5"]
@@ -78,6 +78,9 @@
 [ext_resource type="AudioStream" uid="uid://ccwe4cw8uh5yr" path="res://src/sounds/player/footsteps/slosh3.wav" id="75_1t4la"]
 [ext_resource type="AudioStream" uid="uid://6yofhfptf3as" path="res://src/sounds/player/footsteps/slosh4.wav" id="76_incn6"]
 [ext_resource type="Script" uid="uid://m4rd2xovd0yt" path="res://addons/simusdev/multiplayer/SD_MPSyncedAudioStreamPlayer3D.gd" id="77_fwt4f"]
+[ext_resource type="PackedScene" uid="uid://cwqpcddsojjt7" path="res://src/player/model/animated_model.tscn" id="79_scwd0"]
+[ext_resource type="Script" uid="uid://b1q8rkwhld80p" path="res://addons/simusdev/statemachine/SD_NodeStateMachine.gd" id="80_pbqqj"]
+[ext_resource type="Script" uid="uid://b2fidrwvgnri2" path="res://addons/simusdev/statemachine/SD_State.gd" id="81_ksn0b"]
 
 [sub_resource type="Resource" id="Resource_yc5r5"]
 script = ExtResource("4_igmvy")
@@ -93,26 +96,14 @@ reliable = false
 mode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_63v7j"]
-frequency = 0.1626
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_63v7j"]
-noise = SubResource("FastNoiseLite_63v7j")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d8irq"]
-albedo_texture = SubResource("NoiseTexture2D_63v7j")
-texture_filter = 0
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_63v7j"]
-material = SubResource("StandardMaterial3D_d8irq")
-
-[sub_resource type="SphereMesh" id="SphereMesh_3xtqa"]
-material = SubResource("StandardMaterial3D_d8irq")
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_63v7j"]
+height = 3.6
 
-[node name="FpPlayer" type="CharacterBody3D"]
+[node name="FpPlayer" type="CharacterBody3D" node_paths=PackedStringArray("movement", "camera", "model")]
 script = ExtResource("1_5mybe")
+movement = NodePath("FP_MovementController")
+camera = NodePath("FP_CameraController")
+model = NodePath("W_AnimatedModel3D")
 metadata/_custom_type_script = "uid://btigi2atrewp7"
 
 [node name="SD_MPPropertySynchronizer" type="Node" parent="."]
@@ -125,7 +116,7 @@ script = ExtResource("3_3omqd")
 player = NodePath("..")
 metadata/_custom_type_script = "uid://clbl4d7cc6aac"
 
-[node name="FP_MovementController" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="FP_MovementController" type="Node" parent="." node_paths=PackedStringArray("state_machine", "player")]
 script = ExtResource("2_pxpxt")
 move_left = "left"
 move_right = "right"
@@ -134,15 +125,19 @@ move_backward = "backward"
 sprint = "sprint"
 jump = "jump"
 crouch = "crouch"
+state_machine = NodePath("../state_machine")
 player = NodePath("..")
 metadata/_custom_type_script = "uid://blipti8xdfg80"
 
 [node name="FP_CameraController" type="Node" parent="." node_paths=PackedStringArray("camera", "player")]
 script = ExtResource("4_3xtqa")
-camera = NodePath("../mesh/neck/Camera3D")
+camera = NodePath("../Camera3D")
 aim = "aim"
 player = NodePath("..")
 metadata/_custom_type_script = "uid://djaba2fh2yby"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="FootstepsSound" type="Node" parent="." node_paths=PackedStringArray("audio_player", "player")]
 script = ExtResource("8_30v2u")
@@ -168,27 +163,43 @@ player = NodePath("..")
 metadata/_custom_type_script = "uid://1vpl8yhifqtq"
 
 [node name="footstep" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
 script = ExtResource("77_fwt4f")
 metadata/_custom_type_script = "uid://m4rd2xovd0yt"
 
-[node name="mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_63v7j")
-
-[node name="neck" type="MeshInstance3D" parent="mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="Camera3D" type="Camera3D" parent="mesh/neck"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-fov = 90.0
-
-[node name="head" type="MeshInstance3D" parent="mesh/neck/Camera3D"]
-mesh = SubResource("SphereMesh_3xtqa")
-skeleton = NodePath("../..")
-
-[node name="HideNodesIfAuthority" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="HideNodesIfAuthority" type="Node" parent="." node_paths=PackedStringArray("target", "nodes")]
 script = ExtResource("5_63v7j")
 target = NodePath("..")
+nodes = [NodePath("../W_AnimatedModel3D")]
 metadata/_custom_type_script = "uid://chjmyo3ptk1qk"
+
+[node name="W_AnimatedModel3D" parent="." instance=ExtResource("79_scwd0")]
+transform = Transform3D(-1, 0, 9.68575e-08, 0, 1, 0, -9.68575e-08, 0, -1, 0, -1.8, 0)
 
 [node name="collision_normal" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_63v7j")
+
+[node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("80_pbqqj")
+initial_state = NodePath("idle")
+metadata/_custom_type_script = "uid://b1q8rkwhld80p"
+
+[node name="idle" type="Node" parent="state_machine"]
+process_mode = 4
+script = ExtResource("81_ksn0b")
+metadata/_custom_type_script = "uid://b2fidrwvgnri2"
+
+[node name="walk" type="Node" parent="state_machine"]
+process_mode = 4
+script = ExtResource("81_ksn0b")
+metadata/_custom_type_script = "uid://b2fidrwvgnri2"
+
+[node name="run" type="Node" parent="state_machine"]
+process_mode = 4
+script = ExtResource("81_ksn0b")
+metadata/_custom_type_script = "uid://b2fidrwvgnri2"
+
+[node name="floating" type="Node" parent="state_machine"]
+process_mode = 4
+script = ExtResource("81_ksn0b")
+metadata/_custom_type_script = "uid://b2fidrwvgnri2"

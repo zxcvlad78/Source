@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwqpcddsojjt7"]
+
+[ext_resource type="Script" uid="uid://pf622qfdiljm" path="res://addons/simusdev/components/animated_model/W_AnimatedModel3D.gd" id="1_2f6q2"]
+[ext_resource type="PackedScene" uid="uid://dwpb4vcsaovcf" path="res://src/player/model/dr_kleiner_scene.tscn" id="2_p2etw"]
+[ext_resource type="AnimationLibrary" uid="uid://c3f7w83jil31c" path="res://src/player/animations/dr_kleiner.res" id="3_yxv2h"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://bhfcanbr60id8" path="res://src/player/model/blend_tree.tres" id="4_bvy8f"]
+
+[node name="W_AnimatedModel3D" type="Node3D" node_paths=PackedStringArray("model", "tree", "player", "skeleton")]
+script = ExtResource("1_2f6q2")
+model_scene = ExtResource("2_p2etw")
+library = ExtResource("3_yxv2h")
+blend_tree = ExtResource("4_bvy8f")
+model = NodePath("model3d")
+tree = NodePath("AnimationTree")
+player = NodePath("AnimationPlayer")
+skeleton = NodePath("model3d/Skeleton3D")
+metadata/_custom_type_script = "uid://pf622qfdiljm"
+
+[node name="model3d" type="Node3D" parent="." instance=ExtResource("2_p2etw")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../model3d")
+libraries = {
+&"dr_kleiner": ExtResource("3_yxv2h")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../model3d")
+tree_root = ExtResource("4_bvy8f")
+anim_player = NodePath("../AnimationPlayer")
+parameters/StateMachine/run/blend_position = Vector2(0, 0)
+parameters/StateMachine/walk/blend_position = Vector2(0, 0)
