@@ -14,6 +14,14 @@ config/name="Source"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="uid://oyaeqf8jjb5f"
 
+[autoload]
+
+SimusDev="*res://addons/simusdev/singletons/s_simusdev.tscn"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/simusdev/plugin.cfg")
+
 [input]
 
 forward={
