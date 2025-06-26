@@ -168,6 +168,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [connection signal="button_up" from="menu/buttons_container/start_game" to="." method="_on_start_game_button_up"]
+[connection signal="button_up" from="menu/buttons_container/connect" to="." method="_on_connect_button_up"]
 [connection signal="button_up" from="menu/buttons_container/quit" to="." method="_on_quit_button_up"]
 [connection signal="loading_finished" from="loading/loader" to="loading" method="_on_loader_loading_finished"]
 [connection signal="loading_started" from="loading/loader" to="loading" method="_on_loader_loading_started"]

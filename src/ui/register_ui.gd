@@ -1,9 +1,9 @@
 extends Control
 
 
-@onready var username_line = $username
-@onready var ip_adress_line = $ip_adress
-@onready var port_line = $port
+@onready var username_line = $VBoxContainer/username
+@onready var ip_adress_line = $VBoxContainer/ip_adress
+@onready var port_line = $VBoxContainer/port
 
 var cfg:SD_Config = SD_Config.new()
 

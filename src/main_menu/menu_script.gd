@@ -13,8 +13,7 @@ func _process(delta: float) -> void:
 
 
 func _on_start_game_button_up() -> void:
-	for child in current_ui_node.get_children():
-		child.queue_free()
+	_clear_current_ui_node()
 	
 	var new_start_game_ui = start_game_ui.instantiate()
 	current_ui_node.add_child(new_start_game_ui)
@@ -24,3 +23,22 @@ func _on_quit_button_up() -> void:
 
 func client_start_lobby():
 	pass
+
+func _clear_current_ui_node():
+	for child in current_ui_node.get_children():
+		child.queue_free()
+
+func _on_connect_button_up() -> void:
+	_clear_current_ui_node()
+	
+	var new_register_ui = preload("res://src/ui/register_ui.tscn").instantiate()
+	current_ui_node.add_child(new_register_ui)
+	new_register_ui.position = (Vector2(get_tree().root.size) / 2) - (new_register_ui.size / 2)
+
+
+
+
+
+
+
+#
