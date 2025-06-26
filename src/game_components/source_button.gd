@@ -7,6 +7,7 @@ class_name SourceButton extends Button
 
 @onready var font = preload("res://addons/simusdev/fonts/Allods.ttf")
 
+@export var always_flat: bool = true
 @export var font_size:float = 16.0 : set = set_font_size
 @export var outline_size:float = 3.0 : set = set_outline_size
 
@@ -19,7 +20,9 @@ func set_outline_size(value:float):
 	set("theme_override_constants/outline_size", value)
 
 func _ready() -> void:
-	flat = true
+	if always_flat:
+		flat = true
+	
 	focus_mode = Control.FOCUS_NONE
 	alignment = HORIZONTAL_ALIGNMENT_LEFT
 	set("theme_override_fonts/font", font)

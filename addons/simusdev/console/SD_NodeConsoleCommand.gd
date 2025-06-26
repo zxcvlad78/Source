@@ -12,3 +12,6 @@ func _ready() -> void:
 
 func __on_executed(cmd: SD_ConsoleCommand) -> void:
 	on_executed.emit(cmd)
+
+func get_command() -> SD_ConsoleCommand:
+	return console.create_command(command.code, command.value) as SD_ConsoleCommand

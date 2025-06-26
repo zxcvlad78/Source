@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://clko22iai38y2"]
+
+[ext_resource type="Script" uid="uid://cftp7o6jfqxy5" path="res://src/singletons/s_PlayerData.gd" id="1_kf1gq"]
+[ext_resource type="Script" uid="uid://dm1owovrrxpce" path="res://addons/simusdev/console/SD_NodeConsoleCommand.gd" id="2_hrhqi"]
+[ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="3_hdv5v"]
+
+[sub_resource type="Resource" id="Resource_g8hlx"]
+script = ExtResource("3_hdv5v")
+code = "nickname"
+value = "user"
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_hrhqi"]
+script = ExtResource("3_hdv5v")
+code = "last_ip"
+value = "localhost"
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[sub_resource type="Resource" id="Resource_hdv5v"]
+script = ExtResource("3_hdv5v")
+code = "last_port"
+value = "7856"
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
+
+[node name="SPlayerData" type="Node"]
+script = ExtResource("1_kf1gq")
+metadata/_custom_type_script = "uid://bbbbj75aawg2j"
+
+[node name="nickname" type="Node" parent="."]
+script = ExtResource("2_hrhqi")
+command = SubResource("Resource_g8hlx")
+metadata/_custom_type_script = "uid://dm1owovrrxpce"
+
+[node name="last_ip" type="Node" parent="."]
+script = ExtResource("2_hrhqi")
+command = SubResource("Resource_hrhqi")
+metadata/_custom_type_script = "uid://dm1owovrrxpce"
+
+[node name="last_port" type="Node" parent="."]
+script = ExtResource("2_hrhqi")
+command = SubResource("Resource_hdv5v")
+metadata/_custom_type_script = "uid://dm1owovrrxpce"

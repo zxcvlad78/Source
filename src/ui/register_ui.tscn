@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cq0i7mk878jsc"]
+[gd_scene load_steps=7 format=3 uid="uid://cq0i7mk878jsc"]
 
 [ext_resource type="LabelSettings" uid="uid://b58jubbtb5q7i" path="res://resources/label_settings/default.tres" id="1_4001w"]
 [ext_resource type="Script" uid="uid://biq5fol6uisi3" path="res://src/ui/register_ui.gd" id="1_oknb4"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="2_8v4n0"]
+[ext_resource type="PackedScene" uid="uid://de1vul0u4d3rc" path="res://src/ui/connecting.tscn" id="2_hkokb"]
 [ext_resource type="Script" uid="uid://bdxogtd2p3ilm" path="res://src/game_components/source_button.gd" id="4_gv57u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1ikv"]
@@ -14,19 +15,23 @@ border_width_bottom = 5
 border_color = Color(0.281648, 0.290631, 0.250249, 1)
 
 [node name="register_ui" type="Control"]
-custom_minimum_size = Vector2(567, 274)
+custom_minimum_size = Vector2(567, 292)
 layout_mode = 3
 anchor_right = 0.295312
-anchor_bottom = 0.253704
+anchor_bottom = 0.27037
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_oknb4")
+connect_scene = ExtResource("2_hkokb")
 metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 574.0
-offset_bottom = 274.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_t1ikv")
 
 [node name="Label" type="Label" parent="Panel"]
@@ -46,7 +51,7 @@ layout_mode = 0
 offset_left = 7.0
 offset_top = 70.0
 offset_right = 567.0
-offset_bottom = 267.0
+offset_bottom = 274.0
 
 [node name="username" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
@@ -71,17 +76,29 @@ text = "7856"
 placeholder_text = "port: "
 metadata/_edit_use_anchors_ = true
 
-[node name="enter_button" type="Button" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.011
+anchor_top = 0.767
+anchor_right = 0.998
+anchor_bottom = 0.982
+offset_left = -0.237
+offset_top = 0.0359955
+offset_right = 0.133972
+offset_bottom = -0.0599976
+
+[node name="connect" type="Button" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 focus_mode = 0
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("2_8v4n0")
 theme_override_font_sizes/font_size = 40
-text = "enter"
+text = "connect"
 flat = true
-alignment = 0
 script = ExtResource("4_gv57u")
 font_size = 40.0
 metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
 
-[connection signal="button_up" from="VBoxContainer/enter_button" to="." method="_on_enter_button_button_up"]
+[connection signal="pressed" from="HBoxContainer/connect" to="." method="_on_connect_pressed"]

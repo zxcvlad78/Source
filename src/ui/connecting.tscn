@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://de1vul0u4d3rc"]
+
+[ext_resource type="Script" uid="uid://c75giv7qltsfg" path="res://src/ui/connecting.gd" id="1_v7ipy"]
+[ext_resource type="LabelSettings" uid="uid://b58jubbtb5q7i" path="res://resources/label_settings/default.tres" id="2_58vjo"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="2_maw6m"]
+[ext_resource type="Script" uid="uid://bdxogtd2p3ilm" path="res://src/game_components/source_button.gd" id="3_xtmyu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_maw6m"]
+bg_color = Color(0.23632, 0.241826, 0.208652, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.281648, 0.290631, 0.250249, 1)
+
+[node name="Connecting" type="Control" node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v7ipy")
+label = NodePath("Panel/Label")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.439216)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.944
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.520081
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_maw6m")
+
+[node name="cancel" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.886
+anchor_right = 0.993
+anchor_bottom = 1.0
+offset_left = 0.879883
+offset_right = -0.560059
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_maw6m")
+theme_override_font_sizes/font_size = 32
+text = "CANCEL"
+flat = true
+script = ExtResource("3_xtmyu")
+font_size = 32.0
+metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -281.0
+offset_top = -25.5
+offset_right = 281.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "connecting..."
+label_settings = ExtResource("2_58vjo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="refresh" type="Timer" parent="."]
+
+[connection signal="pressed" from="Panel/cancel" to="." method="_on_cancel_pressed"]
+[connection signal="timeout" from="refresh" to="." method="_on_refresh_timeout"]

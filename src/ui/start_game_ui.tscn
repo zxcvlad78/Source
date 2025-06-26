@@ -51,6 +51,7 @@ theme_override_font_sizes/font_size = 41
 theme_override_styles/focus = SubResource("StyleBoxFlat_ayqih")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_ayqih")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ayqih")
+text = "localhost"
 placeholder_text = "ip-adress: "
 
 [node name="port" type="LineEdit" parent="bg_rect/VBoxContainer"]
@@ -61,6 +62,7 @@ theme_override_font_sizes/font_size = 41
 theme_override_styles/focus = SubResource("StyleBoxFlat_ayqih")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_ayqih")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ayqih")
+text = "7856"
 placeholder_text = "port: "
 
 [node name="SourceButton" type="Button" parent="bg_rect/VBoxContainer"]

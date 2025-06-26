@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1vvrpwv4e4wo"]
+
+[ext_resource type="LabelSettings" uid="uid://b58jubbtb5q7i" path="res://resources/label_settings/default.tres" id="1_y3q6a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xw53"]
+bg_color = Color(0.23632, 0.241826, 0.208652, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.281648, 0.290631, 0.250249, 1)
+
+[node name="LoginUi" type="Control"]
+custom_minimum_size = Vector2(567, 416)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 567.0
+offset_bottom = 416.0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5xw53")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.5
+offset_right = 62.5
+offset_bottom = 51.0
+grow_horizontal = 2
+text = "login"
+label_settings = ExtResource("1_y3q6a")
+horizontal_alignment = 1
+vertical_alignment = 1

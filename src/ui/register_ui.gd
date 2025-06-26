@@ -5,15 +5,23 @@ extends Control
 @onready var ip_adress_line = $VBoxContainer/ip_adress
 @onready var port_line = $VBoxContainer/port
 
-var cfg:SD_Config = SD_Config.new()
+@export var connect_scene: PackedScene
+
+func _ready() -> void:
+	username_line.text = PlayerData.get_nickname()
+	ip_adress_line.text = PlayerData.get_last_ip()
+	port_line.text = str(PlayerData.get_last_port())
 
 func connect_to_server():
-	SimusDev.multiplayerAPI.set_username(username_line.text)
-	SimusDev.multiplayerAPI.create_client((ip_adress_line.text), int(port_line.text))
-	await SimusDev.multiplayerAPI.connected_to_server
-	EventBus.connected_to_server.emit()
+	PlayerData.set_nickname(username_line.text)
+	PlayerData.set_last_ip(ip_adress_line.text)
+	PlayerData.set_last_port(int(port_line.text))
+	
+	var menu: Control = connect_scene.instantiate()
+	get_parent().add_child(menu)
+	queue_free()
 
-func _on_enter_button_button_up() -> void:
+func _on_connect_pressed() -> void:
 	if username_line.text == "" or ip_adress_line.text == "" or port_line.text == "":
 		return
 	

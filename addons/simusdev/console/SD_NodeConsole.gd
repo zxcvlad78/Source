@@ -2,7 +2,7 @@
 extends Node
 class_name SD_NodeConsole
 
-@onready var console: SD_TrunkConsole = SimusDev.console
+@onready var console: SD_TrunkConsole = SimusDev.console as SD_TrunkConsole
 
 signal on_update()
 
