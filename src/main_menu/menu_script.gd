@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @export var start_game_ui:PackedScene
 
@@ -33,10 +33,7 @@ func _on_connect_button_up() -> void:
 	
 	var new_register_ui = preload("res://src/ui/register_ui.tscn").instantiate()
 	current_ui_node.add_child(new_register_ui)
-	new_register_ui.position = (Vector2(get_tree().root.size) / 2) - (new_register_ui.size / 2)
-
-
-
+	new_register_ui.global_position = (Vector2(get_tree().root.size) / 2) + new_register_ui.size / 2
 
 
 

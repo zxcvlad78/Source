@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://b43thl6y1mqv6"]
+[gd_scene load_steps=85 format=3 uid="uid://b43thl6y1mqv6"]
 
 [ext_resource type="Script" uid="uid://btigi2atrewp7" path="res://src/player/fp_player.gd" id="1_5mybe"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_paxe5"]
@@ -81,6 +81,7 @@
 [ext_resource type="PackedScene" uid="uid://cwqpcddsojjt7" path="res://src/player/model/animated_model.tscn" id="79_scwd0"]
 [ext_resource type="Script" uid="uid://b1q8rkwhld80p" path="res://addons/simusdev/statemachine/SD_NodeStateMachine.gd" id="80_pbqqj"]
 [ext_resource type="Script" uid="uid://b2fidrwvgnri2" path="res://addons/simusdev/statemachine/SD_State.gd" id="81_ksn0b"]
+[ext_resource type="PackedScene" uid="uid://bjgedg0gxqwn2" path="res://src/prefabs/nickname/nickname.tscn" id="82_u78ao"]
 
 [sub_resource type="Resource" id="Resource_yc5r5"]
 script = ExtResource("4_igmvy")
@@ -167,6 +168,8 @@ metadata/_custom_type_script = "uid://1vpl8yhifqtq"
 
 [node name="footstep" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
+unit_size = 5.0
+max_distance = 30.0
 script = ExtResource("77_fwt4f")
 metadata/_custom_type_script = "uid://m4rd2xovd0yt"
 
@@ -206,3 +209,7 @@ metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 process_mode = 4
 script = ExtResource("81_ksn0b")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"
+
+[node name="nickname" parent="." instance=ExtResource("82_u78ao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+pixel_size = 0.01

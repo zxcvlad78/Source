@@ -13,6 +13,7 @@ config_version=5
 config/name="Source"
 run/main_scene="uid://djh1mmgq5yet7"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/image="uid://oyaeqf8jjb5f"
 config/icon="uid://oyaeqf8jjb5f"
 
 [autoload]
@@ -24,8 +25,7 @@ EventBus="*res://src/scripts/event_bus.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/borderless=true
-window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 
