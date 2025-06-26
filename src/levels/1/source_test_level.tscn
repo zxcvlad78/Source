@@ -1,6 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://c26u5te67y4gh"]
+[gd_scene load_steps=25 format=3 uid="uid://c26u5te67y4gh"]
 
 [ext_resource type="PackedScene" uid="uid://b43thl6y1mqv6" path="res://src/player/fp_player.tscn" id="1_5cht5"]
+[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="2_8q13f"]
+[ext_resource type="Script" uid="uid://btigi2atrewp7" path="res://src/player/fp_player.gd" id="3_tolsv"]
+[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="4_rajh8"]
+[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="5_dahok"]
+[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="6_2m0dh"]
+[ext_resource type="Script" uid="uid://clbl4d7cc6aac" path="res://src/game_components/fp_player_physics.gd" id="7_7prmt"]
+[ext_resource type="PackedScene" uid="uid://cwqpcddsojjt7" path="res://src/player/model/animated_model.tscn" id="8_oxgkq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tvyis"]
 sky_top_color = Color(1, 0.245186, 0.188351, 1)
@@ -14,6 +21,71 @@ sky_material = SubResource("ProceduralSkyMaterial_tvyis")
 background_mode = 2
 sky = SubResource("Sky_5cht5")
 
+[sub_resource type="Gradient" id="Gradient_5cht5"]
+colors = PackedColorArray(0, 0.2, 0, 1, 0.435294, 0.870588, 0.156863, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8q13f"]
+noise_type = 0
+seed = 1
+frequency = 0.06
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_656ni"]
+seamless = true
+color_ramp = SubResource("Gradient_5cht5")
+noise = SubResource("FastNoiseLite_8q13f")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_svlou"]
+albedo_texture = SubResource("NoiseTexture2D_656ni")
+uv1_triplanar = true
+
+[sub_resource type="Resource" id="Resource_yc5r5"]
+script = ExtResource("6_2m0dh")
+tickrate = 32.0
+tickrate_mode = 0
+sync_mode = 0
+properties = Array[String](["transform"])
+sync_at_start = true
+interpolation_enabled = false
+interpolation_speed = 30.0
+node_path = NodePath("..")
+reliable = false
+mode = 1
+metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_63v7j"]
+height = 3.6
+
+[sub_resource type="Gradient" id="Gradient_8q13f"]
+colors = PackedColorArray(0.168287, 0.0899942, 0.0276984, 1, 0.593441, 0.297966, 0.0252277, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_656ni"]
+noise_type = 0
+frequency = 0.0172
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_svlou"]
+seamless = true
+normalize = false
+color_ramp = SubResource("Gradient_8q13f")
+noise = SubResource("FastNoiseLite_656ni")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n66d5"]
+albedo_texture = SubResource("NoiseTexture2D_svlou")
+uv1_triplanar = true
+
+[sub_resource type="Gradient" id="Gradient_6ayy3"]
+offsets = PackedFloat32Array(0, 0.98895, 0.994475, 1)
+colors = PackedColorArray(0.0910301, 0.185294, 0.0820938, 1, 0.280366, 0.416761, 0.180197, 1, 0.469893, 0.23753, 0.0259457, 1, 0.335197, 0.426035, 0.198926, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_43y51"]
+seamless = true
+normalize = false
+color_ramp = SubResource("Gradient_6ayy3")
+noise = SubResource("FastNoiseLite_656ni")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tolsv"]
+albedo_texture = SubResource("NoiseTexture2D_43y51")
+uv1_triplanar = true
+
 [node name="SourceTestLevel" type="Node3D"]
 
 [node name="env" type="WorldEnvironment" parent="."]
@@ -22,11 +94,67 @@ environment = SubResource("Environment_8q13f")
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.642788, -0.323744, 0.694272, 0, 0.906308, 0.422618, -0.766045, -0.271654, 0.582563, 0, 0, 0)
 light_color = Color(1, 0.714868, 0.669018, 1)
+shadow_enabled = true
 
 [node name="floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, -0.8)
 use_collision = true
-size = Vector3(25, 0.1, 25)
+size = Vector3(100, 0.1, 100)
+material = SubResource("StandardMaterial3D_svlou")
 
-[node name="FpPlayer" parent="." instance=ExtResource("1_5cht5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
+[node name="SD_MPPlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
+script = ExtResource("2_8q13f")
+player_scene = ExtResource("1_5cht5")
+parent = NodePath("..")
+spawn_points = [NodePath("../FpPlayer")]
+metadata/_custom_type_script = "uid://crxce7oinuqn4"
+
+[node name="FpPlayer" type="CharacterBody3D" parent="." node_paths=PackedStringArray("model")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9, 0)
+script = ExtResource("3_tolsv")
+model = NodePath("W_AnimatedModel3D")
+metadata/_custom_type_script = "uid://btigi2atrewp7"
+
+[node name="SD_MPPropertySynchronizer" type="Node" parent="FpPlayer"]
+script = ExtResource("4_rajh8")
+properties = Array[ExtResource("5_dahok")]([SubResource("Resource_yc5r5")])
+metadata/_custom_type_script = "uid://5by2ms76p5wg"
+
+[node name="FP_PlayerPhysics" type="Node" parent="FpPlayer" node_paths=PackedStringArray("player")]
+script = ExtResource("7_7prmt")
+player = NodePath("..")
+metadata/_custom_type_script = "uid://clbl4d7cc6aac"
+
+[node name="W_AnimatedModel3D" parent="FpPlayer" instance=ExtResource("8_oxgkq")]
+transform = Transform3D(-1, 0, 9.68575e-08, 0, 1, 0, -9.68575e-08, 0, -1, 0, -1.8, 0)
+
+[node name="collision_normal" type="CollisionShape3D" parent="FpPlayer"]
+visible = false
+shape = SubResource("CapsuleShape3D_63v7j")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.94016, -8)
+height = 5.0
+sides = 16
+material = SubResource("StandardMaterial3D_n66d5")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.352868, 0, 0)
+operation = 1
+height = 5.0
+sides = 16
+material = SubResource("StandardMaterial3D_n66d5")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGCylinder3D/CSGCylinder3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.300648, 0, -0.180714)
+operation = 1
+height = 5.0
+sides = 16
+material = SubResource("StandardMaterial3D_n66d5")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 1.8, -0.1)
+radius = 1.064
+height = 2.685
+material = SubResource("StandardMaterial3D_tolsv")
