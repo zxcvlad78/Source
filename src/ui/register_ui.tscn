@@ -18,6 +18,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1353.0
+offset_bottom = -682.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_oknb4")
@@ -25,7 +27,7 @@ script = ExtResource("1_oknb4")
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_right = 574.0
-offset_bottom = 398.0
+offset_bottom = 274.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_t1ikv")
 
 [node name="Label" type="Label" parent="Panel"]
@@ -40,43 +42,47 @@ grow_horizontal = 2
 text = "sign in"
 label_settings = ExtResource("1_4001w")
 
-[node name="username" type="LineEdit" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-anchor_left = 0.00364583
-anchor_top = 0.115741
-anchor_right = 0.295312
-anchor_bottom = 0.162037
-offset_bottom = 1.52588e-05
+offset_left = 7.0
+offset_top = 70.0
+offset_right = 567.0
+offset_bottom = 267.0
+
+[node name="username" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("2_8v4n0")
 theme_override_font_sizes/font_size = 40
 placeholder_text = "username:"
 metadata/_edit_use_anchors_ = true
 
-[node name="password" type="LineEdit" parent="."]
-layout_mode = 0
-anchor_left = 0.00364583
-anchor_top = 0.175
-anchor_right = 0.295312
-anchor_bottom = 0.221296
+[node name="ip_adress" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("2_8v4n0")
 theme_override_font_sizes/font_size = 40
-placeholder_text = "password:"
+text = "localhost"
+placeholder_text = "ip-adress:"
 metadata/_edit_use_anchors_ = true
 
-[node name="enter_button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 339.0
-offset_right = 567.0
-offset_bottom = 387.0
+[node name="port" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8v4n0")
+theme_override_font_sizes/font_size = 40
+text = "7856"
+placeholder_text = "port: "
+metadata/_edit_use_anchors_ = true
+
+[node name="enter_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
 focus_mode = 0
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("2_8v4n0")
 theme_override_font_sizes/font_size = 40
 text = "enter"
 flat = true
+alignment = 0
 script = ExtResource("4_gv57u")
 font_size = 40.0
 metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
 
-[connection signal="button_up" from="enter_button" to="." method="_on_enter_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/enter_button" to="." method="_on_enter_button_button_up"]

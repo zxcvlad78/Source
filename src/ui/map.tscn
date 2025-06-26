@@ -4,15 +4,8 @@
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="1_t1ikv"]
 [ext_resource type="Resource" uid="uid://dwcjij5vsciah" path="res://maps/test_source.tres" id="2_6sdvc"]
 [ext_resource type="Script" uid="uid://bdxogtd2p3ilm" path="res://src/game_components/source_button.gd" id="2_g2tud"]
+[ext_resource type="StyleBox" uid="uid://dmepesxo42fuf" path="res://resources/styles/panel/source_default.tres" id="3_s4ww7"]
 [ext_resource type="Script" uid="uid://blmjiijnw8fqo" path="res://addons/simusdev/resourceloader/SD_NodeResourceLoader.gd" id="4_fpf5g"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1ikv"]
-bg_color = Color(0.23632, 0.241826, 0.208652, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.281648, 0.290631, 0.250249, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_g2tud"]
 font = ExtResource("1_t1ikv")
@@ -39,7 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_t1ikv")
+theme_override_styles/panel = ExtResource("3_s4ww7")
 
 [node name="map_name" type="Label" parent="bg_rect"]
 layout_mode = 0
@@ -82,7 +75,7 @@ theme_override_font_sizes/font_size = 50
 disabled = true
 text = " load"
 flat = true
-alignment = 2
+alignment = 0
 script = ExtResource("2_g2tud")
 font_size = 50.0
 metadata/_custom_type_script = "uid://bdxogtd2p3ilm"

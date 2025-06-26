@@ -1,23 +1,18 @@
 extends Control
 
+
 @onready var username_line = $username
-@onready var password_line = $password
+@onready var ip_adress_line = $ip_adress
+@onready var port_line = $port
 
 var cfg:SD_Config = SD_Config.new()
 
-func register():
-	if username_line.text == "" or password_line.text == "":
-		return
-	
-	cfg.set_value("user", "name", username_line.text)
-	cfg.set_value("user", "password", password_line.text)
-	
-	cfg.save("user://player_data.cfg")
-
-func login():
-	pass
-
-
+func connect_to_server():
+	SimusDev.multiplayerAPI.set_username(username_line.text)
+	SimusDev.multiplayerAPI.create_client(ip_adress_line.text, port_line.text)
 
 func _on_enter_button_button_up() -> void:
-	pass # Replace with function body.
+	if username_line.text == "" or ip_adress_line.text == "" or port_line.text == "":
+		return
+	
+	connect_to_server()
