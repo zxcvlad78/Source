@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://cq0i7mk878jsc"]
+
+[ext_resource type="LabelSettings" uid="uid://b58jubbtb5q7i" path="res://resources/label_settings/default.tres" id="1_4001w"]
+[ext_resource type="Script" uid="uid://biq5fol6uisi3" path="res://src/ui/register_ui.gd" id="1_oknb4"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="2_8v4n0"]
+[ext_resource type="Script" uid="uid://bdxogtd2p3ilm" path="res://src/game_components/source_button.gd" id="4_gv57u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1ikv"]
+bg_color = Color(0.23632, 0.241826, 0.208652, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.281648, 0.290631, 0.250249, 1)
+
+[node name="register_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oknb4")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 574.0
+offset_bottom = 398.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t1ikv")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.5
+offset_right = 62.5
+offset_bottom = 51.0
+grow_horizontal = 2
+text = "sign in"
+label_settings = ExtResource("1_4001w")
+
+[node name="username" type="LineEdit" parent="."]
+layout_mode = 0
+anchor_left = 0.00364583
+anchor_top = 0.115741
+anchor_right = 0.295312
+anchor_bottom = 0.162037
+offset_bottom = 1.52588e-05
+theme_override_fonts/font = ExtResource("2_8v4n0")
+theme_override_font_sizes/font_size = 40
+placeholder_text = "username:"
+metadata/_edit_use_anchors_ = true
+
+[node name="password" type="LineEdit" parent="."]
+layout_mode = 0
+anchor_left = 0.00364583
+anchor_top = 0.175
+anchor_right = 0.295312
+anchor_bottom = 0.221296
+theme_override_fonts/font = ExtResource("2_8v4n0")
+theme_override_font_sizes/font_size = 40
+placeholder_text = "password:"
+metadata/_edit_use_anchors_ = true
+
+[node name="enter_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 339.0
+offset_right = 567.0
+offset_bottom = 387.0
+focus_mode = 0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_8v4n0")
+theme_override_font_sizes/font_size = 40
+text = "enter"
+flat = true
+script = ExtResource("4_gv57u")
+font_size = 40.0
+metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
+
+[connection signal="button_up" from="enter_button" to="." method="_on_enter_button_button_up"]

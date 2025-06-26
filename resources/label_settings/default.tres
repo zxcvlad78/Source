@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://b58jubbtb5q7i"]
+
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="1_d5fxl"]
+
+[resource]
+font = ExtResource("1_d5fxl")
+font_size = 50
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)

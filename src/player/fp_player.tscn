@@ -161,7 +161,6 @@ woodpanel = Array[AudioStream]([ExtResource("57_n2f8k"), ExtResource("58_y0f10")
 ladder = Array[AudioStream]([ExtResource("61_j3ha8"), ExtResource("62_y4cpm"), ExtResource("63_18abl"), ExtResource("64_4ip27")])
 wade = Array[AudioStream]([ExtResource("65_w3wk0"), ExtResource("66_6amtn"), ExtResource("67_hnvgw"), ExtResource("68_1e165"), ExtResource("69_asp7o"), ExtResource("70_xqg38"), ExtResource("71_gj7jx"), ExtResource("72_pva1w")])
 slosh = Array[AudioStream]([ExtResource("73_t11ha"), ExtResource("74_cm4bd"), ExtResource("75_1t4la"), ExtResource("76_incn6")])
-current_surface = "tile"
 audio_player = NodePath("../footstep")
 player = NodePath("..")
 metadata/_custom_type_script = "uid://1vpl8yhifqtq"

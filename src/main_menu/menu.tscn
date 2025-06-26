@@ -80,11 +80,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="buttons_container" type="VBoxContainer" parent="menu"]
 layout_mode = 0
-offset_left = 45.0
-offset_top = 330.0
-offset_right = 363.0
-offset_bottom = 1080.0
-theme_override_constants/separation = 10
+anchor_left = 0.0234375
+anchor_top = 0.305556
+anchor_right = 0.189063
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
 
 [node name="start_game" type="Button" parent="menu/buttons_container"]
 layout_mode = 2
@@ -125,7 +125,21 @@ script = ExtResource("3_h5t6v")
 font_size = 50.0
 metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
 
+[node name="quit" type="Button" parent="menu/buttons_container"]
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_h5t6v")
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+flat = true
+alignment = 0
+script = ExtResource("3_h5t6v")
+font_size = 50.0
+metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
+
 [node name="loading" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -154,5 +168,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [connection signal="button_up" from="menu/buttons_container/start_game" to="." method="_on_start_game_button_up"]
+[connection signal="button_up" from="menu/buttons_container/quit" to="." method="_on_quit_button_up"]
 [connection signal="loading_finished" from="loading/loader" to="loading" method="_on_loader_loading_finished"]
 [connection signal="loading_started" from="loading/loader" to="loading" method="_on_loader_loading_started"]
