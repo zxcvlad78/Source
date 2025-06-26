@@ -1,3 +1,3 @@
 extends Node
 
-signal connect_to_server
+signal connected_to_server
