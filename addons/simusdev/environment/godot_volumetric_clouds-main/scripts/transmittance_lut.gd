@@ -47,7 +47,7 @@ func _initialize_texture():
 	texture_rd = rd.texture_create(tf, RDTextureView.new(), [])
 
 func _initialize_compute_code():
-	var shader_file = load("res://addons/simusdev/environment/godot_volumetric_clouds-main/shaders/compute/transmittance_lut.glsl")
+	var shader_file = preload("res://addons/simusdev/environment/godot_volumetric_clouds-main/shaders/compute/transmittance_lut.glsl")
 	var shader_spirv:RDShaderSPIRV = shader_file.get_spirv()
 	shader = rd.shader_create_from_spirv(shader_spirv)
 	if not shader.is_valid():
