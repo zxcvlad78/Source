@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="R_GameMap" load_steps=2 format=3 uid="uid://dhfl6y7jqhhwu"]
+
+[ext_resource type="Script" uid="uid://b42k5te61wt0y" path="res://src/game_components/r_game_map.gd" id="1_bqpk7"]
+
+[resource]
+script = ExtResource("1_bqpk7")
+scene_path = null
+name = "test2"
+code = "test2"
+folders_to_load = Array[String]([])
+metadata/_custom_type_script = "uid://b42k5te61wt0y"

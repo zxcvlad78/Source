@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://cklxpjrnef0c4"]
+
+[ext_resource type="Script" uid="uid://yetqqp1ir73a" path="res://src/ui/start_game_ui.gd" id="1_ayqih"]
+[ext_resource type="Script" uid="uid://di51vmxytb2ud" path="res://src/ui/map_container.gd" id="1_h5wti"]
+[ext_resource type="PackedScene" uid="uid://b84oyj0eflkt3" path="res://src/ui/map.tscn" id="2_8p1si"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="3_27mxb"]
+[ext_resource type="Script" uid="uid://bdxogtd2p3ilm" path="res://src/game_components/source_button.gd" id="4_ayqih"]
+
+[node name="start_game_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ayqih")
+
+[node name="bg_rect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.498039)
+
+[node name="bg_rect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.498039)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="bg_rect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MapContainer" type="VBoxContainer" parent="bg_rect2/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+script = ExtResource("1_h5wti")
+map_ui_prefab = ExtResource("2_8p1si")
+maps_folder_path = "res://maps/"
+
+[node name="close_ui" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1775.0
+offset_top = 1010.0
+offset_right = 1908.0
+offset_bottom = 1069.0
+focus_mode = 0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_27mxb")
+theme_override_font_sizes/font_size = 50
+text = "cancel"
+flat = true
+alignment = 0
+script = ExtResource("4_ayqih")
+font_size = 50.0
+metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
+
+[connection signal="button_up" from="close_ui" to="." method="_on_close_ui_button_up"]

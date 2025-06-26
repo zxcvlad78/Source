@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://b84oyj0eflkt3"]
+
+[ext_resource type="Script" uid="uid://c8cps7151eq47" path="res://src/ui/map_script.gd" id="1_dm70j"]
+[ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="1_t1ikv"]
+[ext_resource type="Resource" uid="uid://dwcjij5vsciah" path="res://maps/test_source.tres" id="2_6sdvc"]
+[ext_resource type="Script" uid="uid://bdxogtd2p3ilm" path="res://src/game_components/source_button.gd" id="2_g2tud"]
+[ext_resource type="Script" uid="uid://blmjiijnw8fqo" path="res://addons/simusdev/resourceloader/SD_NodeResourceLoader.gd" id="4_fpf5g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1ikv"]
+bg_color = Color(0.23632, 0.241826, 0.208652, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.281648, 0.290631, 0.250249, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g2tud"]
+font = ExtResource("1_t1ikv")
+font_size = 46
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="map" type="Control"]
+custom_minimum_size = Vector2(360, 240)
+layout_mode = 3
+anchor_right = 0.1875
+anchor_bottom = 0.222222
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dm70j")
+map_resource = ExtResource("2_6sdvc")
+metadata/_custom_type_script = "uid://c8cps7151eq47"
+metadata/_edit_use_anchors_ = true
+
+[node name="bg_rect" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t1ikv")
+
+[node name="map_name" type="Label" parent="bg_rect"]
+layout_mode = 0
+anchor_left = 0.0166667
+anchor_top = 0.0208333
+anchor_right = 0.983333
+anchor_bottom = 0.216667
+text = "map_name"
+label_settings = SubResource("LabelSettings_g2tud")
+text_overrun_behavior = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="new_game" type="Button" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 170.0
+offset_right = 112.0
+offset_bottom = 229.0
+focus_mode = 0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_t1ikv")
+theme_override_font_sizes/font_size = 50
+text = "new"
+flat = true
+alignment = 0
+script = ExtResource("2_g2tud")
+font_size = 50.0
+metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
+
+[node name="new_game2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 169.0
+offset_right = 348.0
+offset_bottom = 228.0
+focus_mode = 0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_t1ikv")
+theme_override_font_sizes/font_size = 50
+disabled = true
+text = " load"
+flat = true
+alignment = 2
+script = ExtResource("2_g2tud")
+font_size = 50.0
+metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
+
+[node name="loader" type="Node" parent="."]
+script = ExtResource("4_fpf5g")
+load_at_start = false
+metadata/_custom_type_script = "uid://blmjiijnw8fqo"
+
+[connection signal="button_up" from="new_game" to="." method="_on_new_game_button_up"]
+[connection signal="button_up" from="new_game2" to="." method="_on_new_game_button_up"]
+[connection signal="loading_finished" from="loader" to="." method="_on_loader_loading_finished"]

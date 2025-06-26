@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://djh1mmgq5yet7"]
+[gd_scene load_steps=11 format=3 uid="uid://djh1mmgq5yet7"]
 
 [ext_resource type="Script" uid="uid://bs3bs0mt3mbp6" path="res://src/main_menu/menu_script.gd" id="1_h5t6v"]
+[ext_resource type="PackedScene" uid="uid://cklxpjrnef0c4" path="res://src/ui/start_game_ui.tscn" id="2_7k8kl"]
 [ext_resource type="Texture2D" uid="uid://ba2bojk1rwkta" path="res://menu_texture.tres" id="2_awcva"]
 [ext_resource type="FontFile" uid="uid://bofcb815ysn51" path="res://addons/simusdev/fonts/Allods.ttf" id="2_h5t6v"]
 [ext_resource type="Script" uid="uid://bdxogtd2p3ilm" path="res://src/game_components/source_button.gd" id="3_h5t6v"]
@@ -9,7 +10,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_w8i11"]
 font = ExtResource("2_h5t6v")
-font_size = 96
+font_size = 166
 font_color = Color(1, 0.760784, 0.760784, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
@@ -23,7 +24,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_h5t6v"]
 font = ExtResource("2_h5t6v")
-font_size = 26
+font_size = 61
 font_color = Color(1, 0.784314, 0.819608, 1)
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
@@ -36,6 +37,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h5t6v")
+start_game_ui = ExtResource("2_7k8kl")
 
 [node name="bg_texture" type="TextureRect" parent="."]
 layout_mode = 1
@@ -57,41 +59,44 @@ grow_vertical = 2
 
 [node name="game_name" type="Label" parent="menu"]
 layout_mode = 0
-offset_left = 45.0
-offset_top = 35.0
-offset_right = 322.0
-offset_bottom = 131.0
+anchor_left = 0.0234375
+anchor_top = 0.0324074
+anchor_right = 0.272396
+anchor_bottom = 0.187037
+offset_right = -201.0
+offset_bottom = -71.0
 text = "Source"
 label_settings = SubResource("LabelSettings_w8i11")
+metadata/_edit_use_anchors_ = true
 
 [node name="author" type="Label" parent="menu/game_name"]
 layout_mode = 0
-offset_left = 254.0
-offset_top = 78.0
-offset_right = 340.0
-offset_bottom = 100.0
-text = "by CrumbleZ"
+anchor_left = 0.861925
+anchor_top = 0.814371
+anchor_right = 1.09205
+anchor_bottom = 0.946108
 label_settings = SubResource("LabelSettings_w3a8n")
+metadata/_edit_use_anchors_ = true
 
 [node name="buttons_container" type="VBoxContainer" parent="menu"]
 layout_mode = 0
 offset_left = 45.0
-offset_top = 207.0
+offset_top = 330.0
 offset_right = 363.0
-offset_bottom = 648.0
-theme_override_constants/separation = 5
+offset_bottom = 1080.0
+theme_override_constants/separation = 10
 
 [node name="start_game" type="Button" parent="menu/buttons_container"]
 layout_mode = 2
 focus_mode = 0
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("2_h5t6v")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "Start game"
 flat = true
 alignment = 0
 script = ExtResource("3_h5t6v")
-font_size = 35.0
+font_size = 50.0
 metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
 
 [node name="connect" type="Button" parent="menu/buttons_container"]
@@ -99,12 +104,12 @@ layout_mode = 2
 focus_mode = 0
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("2_h5t6v")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "Connect"
 flat = true
 alignment = 0
 script = ExtResource("3_h5t6v")
-font_size = 35.0
+font_size = 50.0
 metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
 
 [node name="settings" type="Button" parent="menu/buttons_container"]
@@ -112,16 +117,15 @@ layout_mode = 2
 focus_mode = 0
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("2_h5t6v")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "Setting"
 flat = true
 alignment = 0
 script = ExtResource("3_h5t6v")
-font_size = 35.0
+font_size = 50.0
 metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
 
 [node name="loading" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -132,10 +136,10 @@ script = ExtResource("4_ilxt0")
 
 [node name="label" type="Label" parent="loading"]
 layout_mode = 0
-offset_left = 161.0
-offset_top = 469.0
-offset_right = 259.0
-offset_bottom = 496.0
+offset_left = 201.0
+offset_top = 823.0
+offset_right = 430.0
+offset_bottom = 885.0
 text = "Loading..."
 label_settings = SubResource("LabelSettings_h5t6v")
 
@@ -144,5 +148,11 @@ script = ExtResource("4_w8i11")
 initial_paths = Array[String](["res://"])
 metadata/_custom_type_script = "uid://blmjiijnw8fqo"
 
+[node name="current_ui" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="button_up" from="menu/buttons_container/start_game" to="." method="_on_start_game_button_up"]
 [connection signal="loading_finished" from="loading/loader" to="loading" method="_on_loader_loading_finished"]
 [connection signal="loading_started" from="loading/loader" to="loading" method="_on_loader_loading_started"]
