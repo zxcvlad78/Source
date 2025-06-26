@@ -309,7 +309,7 @@ func _initialize_compute_code(p_textureSize):
 	rd = RenderingServer.get_rendering_device()
 	
 	# Create our shader
-	var shader_file = preload("res://addons/simusdev/environment/godot_volumetric_clouds-main/shaders/compute/clouds.glsl")
+	var shader_file = load("res://addons/simusdev/environment/godot_volumetric_clouds-main/shaders/compute/clouds.glsl")
 	var shader_spirv: RDShaderSPIRV = shader_file.get_spirv()
 	shader_rd = rd.shader_create_from_spirv(shader_spirv)
 	if not shader_rd.is_valid():
