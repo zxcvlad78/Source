@@ -9,7 +9,9 @@ var cfg:SD_Config = SD_Config.new()
 
 func connect_to_server():
 	SimusDev.multiplayerAPI.set_username(username_line.text)
-	SimusDev.multiplayerAPI.create_client(ip_adress_line.text, port_line.text)
+	SimusDev.multiplayerAPI.create_client((ip_adress_line.text), int(port_line.text))
+	await SimusDev.multiplayerAPI.connected_to_server
+	EventBus.connected_to_server.emit()
 
 func _on_enter_button_button_up() -> void:
 	if username_line.text == "" or ip_adress_line.text == "" or port_line.text == "":

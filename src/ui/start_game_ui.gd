@@ -12,6 +12,12 @@ func _ready() -> void:
 func _on_close_ui_button_up() -> void:
 	self.hide()
 
-
 func _on_source_button_button_up() -> void:
-	SD_Multiplayer.create_server(port_line.text)
+	start_lobby()
+
+func start_lobby():
+	if username_line.text == "" or ip_adress_line.text == "" or port_line.text == "":
+		return
+	
+	SimusDev.multiplayerAPI.set_username(username_line.text)
+	SD_Multiplayer.create_server(int(port_line.text))
