@@ -1,0 +1,59 @@
+[gd_scene load_steps=12 format=3 uid="uid://dsibeuntmd1lt"]
+
+[sub_resource type="Curve" id="Curve_khmam"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.140969, 0.977528), 0.0, 0.0, 0, 0, Vector2(0.290749, 0.910112), -0.525116, -0.525116, 0, 0, Vector2(0.436123, 0.88764), 0.0, 0.0, 0, 0, Vector2(0.568282, 0.820225), 0.0, 0.0, 0, 0, Vector2(0.674009, 0.88764), 0.0, 0.0, 0, 0, Vector2(0.779736, 0.932584), 0.0, 0.0, 0, 0, Vector2(0.881057, 0.797753), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 9
+
+[sub_resource type="Gradient" id="Gradient_kg7iw"]
+colors = PackedColorArray(0.293737, 0.175774, 0, 1, 0.399797, 0.241611, 0.128192, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a7a8y"]
+noise_type = 5
+frequency = 0.3525
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_51r34"]
+color_ramp = SubResource("Gradient_kg7iw")
+noise = SubResource("FastNoiseLite_a7a8y")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_722j7"]
+albedo_texture = SubResource("NoiseTexture2D_51r34")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_0s3xt"]
+material = SubResource("StandardMaterial3D_722j7")
+radius = 0.05
+curve = SubResource("Curve_khmam")
+
+[sub_resource type="Gradient" id="Gradient_bf4hq"]
+colors = PackedColorArray(0.259294, 0.259294, 0.259294, 1, 0.377919, 0.377919, 0.377919, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tmaro"]
+noise_type = 5
+frequency = 0.4659
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vwsgf"]
+seamless = true
+color_ramp = SubResource("Gradient_bf4hq")
+noise = SubResource("FastNoiseLite_tmaro")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vldv"]
+albedo_texture = SubResource("NoiseTexture2D_vwsgf")
+metallic = 1.0
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_w6irq"]
+material = SubResource("StandardMaterial3D_5vldv")
+radius = 0.095
+section_length = 0.06
+
+[node name="model_crowbar" type="Node3D"]
+
+[node name="mesh" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("TubeTrailMesh_0s3xt")
+
+[node name="1" type="CSGMesh3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 0.00972138, -0.999953, 0, 0.999953, 0.00972138, 0, 0.508406, -0.00223724)
+mesh = SubResource("TubeTrailMesh_w6irq")

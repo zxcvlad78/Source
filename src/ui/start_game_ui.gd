@@ -13,6 +13,13 @@ func _ready() -> void:
 	
 
 
+	if SimusDev.multiplayerAPI.is_client():
+		SyncedData.client_sync_data_from_server()
+		await SyncedData.all_data_synchronized
+		var server_map_code: String = Maps.get_current_server_map_code()
+		if not server_map_code.is_empty():
+			Maps.change_map_to(Maps.get_map_by_code(server_map_code))
+
 func _on_close_ui_button_up() -> void:
 	SD_Multiplayer.close_peer()
 	self.hide()

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://7cvm8fk1pnd1"]
+
+[ext_resource type="Script" uid="uid://bacoe704k6qms" path="res://src/singletons/s_synced_data.gd" id="1_ihwcr"]
+
+[node name="s_SyncedData" type="Node2D"]
+script = ExtResource("1_ihwcr")
+metadata/_custom_type_script = "uid://bacoe704k6qms"

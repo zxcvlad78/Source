@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5bo0rtk1jprs"]
+
+[ext_resource type="Script" uid="uid://bj2bsbby78g0r" path="res://src/game_components/base_item.gd" id="1_lxsb3"]
+[ext_resource type="Resource" uid="uid://bcwu1fqlo1isv" path="res://resources/items/crowbar.tres" id="2_pp7o3"]
+
+[node name="Crowbar" type="Node"]
+script = ExtResource("1_lxsb3")
+item_resource = ExtResource("2_pp7o3")
+metadata/_custom_type_script = "uid://bj2bsbby78g0r"

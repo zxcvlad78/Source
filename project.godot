@@ -20,6 +20,7 @@ config/icon="uid://oyaeqf8jjb5f"
 
 SimusDev="*res://addons/simusdev/singletons/s_simusdev.tscn"
 PlayerData="*res://src/singletons/s_PlayerData.tscn"
+SyncedData="*res://src/singletons/s_synced_data.gd"
 EventBus="*res://src/scripts/event_bus.gd"
 Maps="*res://src/singletons/s_Maps.gd"
 
@@ -100,5 +101,8 @@ common/physics_interpolation=true
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/decals/filter=0
+textures/light_projectors/filter=0
