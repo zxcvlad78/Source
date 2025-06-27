@@ -1,8 +1,4 @@
-
-[gd_scene load_steps=89 format=3 uid="uid://b43thl6y1mqv6"]
-
 [gd_scene load_steps=86 format=3 uid="uid://b43thl6y1mqv6"]
-
 
 [ext_resource type="Script" uid="uid://btigi2atrewp7" path="res://src/player/fp_player.gd" id="1_5mybe"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_paxe5"]
@@ -13,8 +9,6 @@
 [ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="4_igmvy"]
 [ext_resource type="Script" uid="uid://chjmyo3ptk1qk" path="res://src/game_components/hide_nodes_if_authority.gd" id="5_63v7j"]
 [ext_resource type="Script" uid="uid://1vpl8yhifqtq" path="res://src/game_components/footsteps_sound.gd" id="8_30v2u"]
-[ext_resource type="Script" uid="uid://dm1owovrrxpce" path="res://addons/simusdev/console/SD_NodeConsoleCommand.gd" id="8_m6pge"]
-[ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="9_b62la"]
 [ext_resource type="AudioStream" uid="uid://df61oell8m2o7" path="res://src/sounds/player/footsteps/grass1.wav" id="9_lxngb"]
 [ext_resource type="AudioStream" uid="uid://djajwdpsxfdpo" path="res://src/sounds/player/footsteps/grass2.wav" id="10_fwt4f"]
 [ext_resource type="AudioStream" uid="uid://coux8jirifpgd" path="res://src/sounds/player/footsteps/grass3.wav" id="11_scwd0"]
@@ -104,18 +98,6 @@ reliable = false
 mode = 1
 metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
 
-[sub_resource type="Resource" id="Resource_6xon3"]
-script = ExtResource("9_b62la")
-code = "aim_sensivity"
-value = "0.5"
-metadata/_custom_type_script = "uid://bptu8uuecjoc5"
-
-[sub_resource type="Resource" id="Resource_xuem0"]
-script = ExtResource("9_b62la")
-code = "sensivity"
-value = "1.0"
-metadata/_custom_type_script = "uid://bptu8uuecjoc5"
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_63v7j"]
 height = 3.6
 
@@ -156,23 +138,6 @@ third_person_camera = NodePath("../Camera3D/Camera3D_third_person")
 aim = "aim"
 player = NodePath("..")
 metadata/_custom_type_script = "uid://djaba2fh2yby"
-
-
-[node name="aim_sens" type="Node" parent="FP_CameraController"]
-script = ExtResource("8_m6pge")
-command = SubResource("Resource_6xon3")
-metadata/_custom_type_script = "uid://dm1owovrrxpce"
-
-[node name="sens" type="Node" parent="FP_CameraController"]
-script = ExtResource("8_m6pge")
-command = SubResource("Resource_xuem0")
-metadata/_custom_type_script = "uid://dm1owovrrxpce"
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-
-[node name="Camera3D_third_person" type="Camera3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527665, 1.80261)
 
 [node name="FootstepsSound" type="Node" parent="." node_paths=PackedStringArray("audio_player", "player")]
 script = ExtResource("8_30v2u")
@@ -246,17 +211,10 @@ process_mode = 4
 script = ExtResource("81_ksn0b")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 
-[node name="nickname" parent="." node_paths=PackedStringArray("target") instance=ExtResource("82_u78ao")]
+[node name="nickname" parent="." instance=ExtResource("82_u78ao")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 pixel_size = 0.01
-
-target = NodePath("..")
-
-[connection signal="on_updated" from="FP_CameraController/aim_sens" to="FP_CameraController" method="_on_aim_sens_on_updated"]
-[connection signal="on_updated" from="FP_CameraController/sens" to="FP_CameraController" method="_on_sens_on_updated"]
-
 
 [node name="ItemManager" type="Node" parent="."]
 script = ExtResource("83_3praq")
 metadata/_custom_type_script = "uid://bu34hkehjbqok"
-
