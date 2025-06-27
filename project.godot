@@ -20,7 +20,6 @@ config/icon="uid://oyaeqf8jjb5f"
 
 SimusDev="*res://addons/simusdev/singletons/s_simusdev.tscn"
 PlayerData="*res://src/singletons/s_PlayerData.tscn"
-SyncedData="*res://src/singletons/s_synced_data.gd"
 EventBus="*res://src/scripts/event_bus.gd"
 Maps="*res://src/singletons/s_Maps.gd"
 
