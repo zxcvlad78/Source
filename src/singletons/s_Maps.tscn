@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1ukwje47saah"]
+
+[ext_resource type="Script" uid="uid://dbaj33dh01pgd" path="res://src/singletons/s_Maps.gd" id="1_703fm"]
+
+[node name="s_Maps" type="Node"]
+script = ExtResource("1_703fm")

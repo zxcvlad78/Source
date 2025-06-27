@@ -22,6 +22,7 @@ SimusDev="*res://addons/simusdev/singletons/s_simusdev.tscn"
 PlayerData="*res://src/singletons/s_PlayerData.tscn"
 SyncedData="*res://src/singletons/s_synced_data.gd"
 EventBus="*res://src/scripts/event_bus.gd"
+Maps="*res://src/singletons/s_Maps.gd"
 
 [display]
 
@@ -92,6 +93,11 @@ switch_camera={
 [network]
 
 limits/tcp/connect_timeout_seconds=10
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+common/physics_interpolation=true
 
 [rendering]
 

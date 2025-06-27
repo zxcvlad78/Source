@@ -10,6 +10,8 @@ func _ready() -> void:
 	SD_Multiplayer.get_singleton().server_disconnected.connect(_on_close_ui_button_up)
 	username_line.text = PlayerData.get_nickname()
 	client_block.visible = SimusDev.multiplayerAPI.is_client()
+	
+
 
 	if SimusDev.multiplayerAPI.is_client():
 		SyncedData.client_sync_data_from_server()

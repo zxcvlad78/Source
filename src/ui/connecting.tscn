@@ -58,6 +58,7 @@ theme_override_fonts/font = ExtResource("2_maw6m")
 theme_override_font_sizes/font_size = 32
 text = "CANCEL"
 flat = true
+alignment = 0
 script = ExtResource("3_xtmyu")
 font_size = 32.0
 metadata/_custom_type_script = "uid://bdxogtd2p3ilm"

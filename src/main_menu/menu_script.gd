@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var current_ui_node = $current_ui
 
 func _ready() -> void:
+	Maps.set_current_map(null)
 	PlayerData.players_can_connect = false
 	SD_Multiplayer.get_singleton().connected_to_server.connect(client_start_lobby)
 
