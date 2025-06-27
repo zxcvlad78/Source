@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b43thl6y1mqv6" path="res://src/player/fp_player.tscn" id="1_5cht5"]
 [ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="1_dahok"]
-[ext_resource type="Script" uid="uid://cajygyir1hxw8" path="res://src/game_components/SourcePlayerSpawner.gd" id="2_2m0dh"]
+[ext_resource type="Script" path="res://src/game_components/SourcePlayerSpawner.gd" id="2_2m0dh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tvyis"]
 sky_top_color = Color(1, 0.245186, 0.188351, 1)
