@@ -97,6 +97,7 @@ theme_override_fonts/font = ExtResource("2_8v4n0")
 theme_override_font_sizes/font_size = 40
 text = "connect"
 flat = true
+alignment = 0
 script = ExtResource("4_gv57u")
 font_size = 40.0
 metadata/_custom_type_script = "uid://bdxogtd2p3ilm"

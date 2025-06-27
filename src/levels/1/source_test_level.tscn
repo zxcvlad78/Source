@@ -1,13 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://c26u5te67y4gh"]
+[gd_scene load_steps=18 format=3 uid="uid://c26u5te67y4gh"]
 
 [ext_resource type="PackedScene" uid="uid://b43thl6y1mqv6" path="res://src/player/fp_player.tscn" id="1_5cht5"]
-[ext_resource type="Script" uid="uid://crxce7oinuqn4" path="res://addons/simusdev/multiplayer/SD_MPPlayerSpawner.gd" id="2_8q13f"]
-[ext_resource type="Script" uid="uid://btigi2atrewp7" path="res://src/player/fp_player.gd" id="3_tolsv"]
-[ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="4_rajh8"]
-[ext_resource type="Script" uid="uid://vem3fl0vut75" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedBase.gd" id="5_dahok"]
-[ext_resource type="Script" uid="uid://cvr8rp4fvo3m0" path="res://addons/simusdev/multiplayer/SD_MPPSSyncedProperty.gd" id="6_2m0dh"]
-[ext_resource type="Script" uid="uid://clbl4d7cc6aac" path="res://src/game_components/fp_player_physics.gd" id="7_7prmt"]
-[ext_resource type="PackedScene" uid="uid://cwqpcddsojjt7" path="res://src/player/model/animated_model.tscn" id="8_oxgkq"]
+[ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="1_dahok"]
+[ext_resource type="Script" uid="uid://cajygyir1hxw8" path="res://src/game_components/SourcePlayerSpawner.gd" id="2_2m0dh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tvyis"]
 sky_top_color = Color(1, 0.245186, 0.188351, 1)
@@ -37,23 +32,6 @@ noise = SubResource("FastNoiseLite_8q13f")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_svlou"]
 albedo_texture = SubResource("NoiseTexture2D_656ni")
 uv1_triplanar = true
-
-[sub_resource type="Resource" id="Resource_yc5r5"]
-script = ExtResource("6_2m0dh")
-tickrate = 32.0
-tickrate_mode = 0
-sync_mode = 0
-properties = Array[String](["transform"])
-sync_at_start = true
-interpolation_enabled = false
-interpolation_speed = 30.0
-node_path = NodePath("..")
-reliable = false
-mode = 1
-metadata/_custom_type_script = "uid://cvr8rp4fvo3m0"
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_63v7j"]
-height = 3.6
 
 [sub_resource type="Gradient" id="Gradient_8q13f"]
 colors = PackedColorArray(0.168287, 0.0899942, 0.0276984, 1, 0.593441, 0.297966, 0.0252277, 1)
@@ -88,6 +66,36 @@ uv1_triplanar = true
 
 [node name="SourceTestLevel" type="Node3D"]
 
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="clientspawner" type="Node" parent="Entities" node_paths=PackedStringArray("detect_roots")]
+script = ExtResource("1_dahok")
+detect_roots = [NodePath("..")]
+APPEND_PROPERTIES_TO_BASE_TYPES = Dictionary[String, PackedStringArray]({
+"CharacterBody3D": PackedStringArray("transform"),
+"Node2D": PackedStringArray("transform"),
+"Node3D": PackedStringArray("transform")
+})
+metadata/_custom_type_script = "uid://bue6ygnxb6qrv"
+
+[node name="SourcePlayerSpawner" type="Node" parent="Entities" node_paths=PackedStringArray("parent", "spawnpoints")]
+script = ExtResource("2_2m0dh")
+player_scene = ExtResource("1_5cht5")
+parent = NodePath("..")
+spawnpoints = [NodePath("../../spawnpoints/1"), NodePath("../../spawnpoints/2"), NodePath("../../spawnpoints/3")]
+metadata/_custom_type_script = "uid://cajygyir1hxw8"
+
+[node name="spawnpoints" type="Node3D" parent="."]
+
+[node name="1" type="Node3D" parent="spawnpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80802, 0)
+
+[node name="2" type="Node3D" parent="spawnpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31495, 1.80802, 0)
+
+[node name="3" type="Node3D" parent="spawnpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.54749, 1.80802, 0)
+
 [node name="env" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8q13f")
 
@@ -101,37 +109,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, -0.8)
 use_collision = true
 size = Vector3(100, 0.1, 100)
 material = SubResource("StandardMaterial3D_svlou")
-
-[node name="SD_MPPlayerSpawner" type="Node" parent="." node_paths=PackedStringArray("parent", "spawn_points")]
-script = ExtResource("2_8q13f")
-player_scene = ExtResource("1_5cht5")
-parent = NodePath("..")
-spawn_points = [NodePath("../FpPlayer")]
-metadata/_custom_type_script = "uid://crxce7oinuqn4"
-
-[node name="FpPlayer" type="CharacterBody3D" parent="." node_paths=PackedStringArray("model")]
-process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9, 0)
-script = ExtResource("3_tolsv")
-model = NodePath("W_AnimatedModel3D")
-metadata/_custom_type_script = "uid://btigi2atrewp7"
-
-[node name="SD_MPPropertySynchronizer" type="Node" parent="FpPlayer"]
-script = ExtResource("4_rajh8")
-properties = Array[ExtResource("5_dahok")]([SubResource("Resource_yc5r5")])
-metadata/_custom_type_script = "uid://5by2ms76p5wg"
-
-[node name="FP_PlayerPhysics" type="Node" parent="FpPlayer" node_paths=PackedStringArray("player")]
-script = ExtResource("7_7prmt")
-player = NodePath("..")
-metadata/_custom_type_script = "uid://clbl4d7cc6aac"
-
-[node name="W_AnimatedModel3D" parent="FpPlayer" instance=ExtResource("8_oxgkq")]
-transform = Transform3D(-1, 0, 9.68575e-08, 0, 1, 0, -9.68575e-08, 0, -1, 0, -1.8, 0)
-
-[node name="collision_normal" type="CollisionShape3D" parent="FpPlayer"]
-visible = false
-shape = SubResource("CapsuleShape3D_63v7j")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.94016, -8)

@@ -91,7 +91,6 @@ text = "Start game"
 flat = true
 alignment = 0
 script = ExtResource("3_h5t6v")
-always_flat = null
 font_size = 50.0
 metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
 
@@ -105,7 +104,6 @@ text = "Connect"
 flat = true
 alignment = 0
 script = ExtResource("3_h5t6v")
-always_flat = null
 font_size = 50.0
 metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
 
@@ -119,7 +117,6 @@ text = "Setting"
 flat = true
 alignment = 0
 script = ExtResource("3_h5t6v")
-always_flat = null
 font_size = 50.0
 metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
 
@@ -133,7 +130,6 @@ text = "Quit"
 flat = true
 alignment = 0
 script = ExtResource("3_h5t6v")
-always_flat = null
 font_size = 50.0
 metadata/_custom_type_script = "uid://bdxogtd2p3ilm"
 
@@ -162,20 +158,13 @@ initial_paths = Array[String](["res://maps", "res://resources", "res://src"])
 metadata/_custom_type_script = "uid://blmjiijnw8fqo"
 
 [node name="current_ui" type="Control" parent="."]
-
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 
 [connection signal="button_up" from="menu/buttons_container/start_game" to="." method="_on_start_game_button_up"]
 [connection signal="button_up" from="menu/buttons_container/connect" to="." method="_on_connect_button_up"]

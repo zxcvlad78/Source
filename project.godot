@@ -21,18 +21,16 @@ config/icon="uid://oyaeqf8jjb5f"
 SimusDev="*res://addons/simusdev/singletons/s_simusdev.tscn"
 PlayerData="*res://src/singletons/s_PlayerData.tscn"
 EventBus="*res://src/scripts/event_bus.gd"
+Maps="*res://src/singletons/s_Maps.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
-
 window/stretch/aspect="expand"
-
 
 [editor_plugins]
 
@@ -94,6 +92,11 @@ switch_camera={
 [network]
 
 limits/tcp/connect_timeout_seconds=10
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+common/physics_interpolation=true
 
 [rendering]
 
