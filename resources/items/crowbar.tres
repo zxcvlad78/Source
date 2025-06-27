@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="R_Item" load_steps=3 format=3 uid="uid://bcwu1fqlo1isv"]
+
+[ext_resource type="PackedScene" uid="uid://dsibeuntmd1lt" path="res://src/items/crowbar/model.tscn" id="1_bhysa"]
+[ext_resource type="Script" uid="uid://crb2hc4qowaso" path="res://src/game_components/r_item.gd" id="1_w8uvs"]
+
+[resource]
+script = ExtResource("1_w8uvs")
+name = &"Crowbar"
+code = "crowbar"
+type = 0
+model_scene = ExtResource("1_bhysa")
+metadata/_custom_type_script = "uid://crb2hc4qowaso"

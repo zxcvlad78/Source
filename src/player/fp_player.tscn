@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://b43thl6y1mqv6"]
+[gd_scene load_steps=86 format=3 uid="uid://b43thl6y1mqv6"]
 
 [ext_resource type="Script" uid="uid://btigi2atrewp7" path="res://src/player/fp_player.gd" id="1_5mybe"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_paxe5"]
@@ -82,6 +82,7 @@
 [ext_resource type="Script" uid="uid://b1q8rkwhld80p" path="res://addons/simusdev/statemachine/SD_NodeStateMachine.gd" id="80_pbqqj"]
 [ext_resource type="Script" uid="uid://b2fidrwvgnri2" path="res://addons/simusdev/statemachine/SD_State.gd" id="81_ksn0b"]
 [ext_resource type="PackedScene" uid="uid://bjgedg0gxqwn2" path="res://src/prefabs/nickname/nickname.tscn" id="82_u78ao"]
+[ext_resource type="Script" uid="uid://bu34hkehjbqok" path="res://src/game_components/weapon_manager.gd" id="83_3praq"]
 
 [sub_resource type="Resource" id="Resource_yc5r5"]
 script = ExtResource("4_igmvy")
@@ -138,12 +139,6 @@ aim = "aim"
 player = NodePath("..")
 metadata/_custom_type_script = "uid://djaba2fh2yby"
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-
-[node name="Camera3D_third_person" type="Camera3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527665, 1.80261)
-
 [node name="FootstepsSound" type="Node" parent="." node_paths=PackedStringArray("audio_player", "player")]
 script = ExtResource("8_30v2u")
 grass = Array[AudioStream]([ExtResource("9_lxngb"), ExtResource("10_fwt4f"), ExtResource("11_scwd0"), ExtResource("12_pbqqj")])
@@ -172,6 +167,12 @@ unit_size = 5.0
 max_distance = 30.0
 script = ExtResource("77_fwt4f")
 metadata/_custom_type_script = "uid://m4rd2xovd0yt"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Camera3D_third_person" type="Camera3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527665, 1.80261)
 
 [node name="HideNodesIfAuthority" type="Node" parent="." node_paths=PackedStringArray("nodes", "player")]
 script = ExtResource("5_63v7j")
@@ -213,3 +214,7 @@ metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 [node name="nickname" parent="." instance=ExtResource("82_u78ao")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 pixel_size = 0.01
+
+[node name="ItemManager" type="Node" parent="."]
+script = ExtResource("83_3praq")
+metadata/_custom_type_script = "uid://bu34hkehjbqok"
