@@ -1,8 +1,4 @@
-
-[gd_scene load_steps=90 format=3 uid="uid://b43thl6y1mqv6"]
-
 [gd_scene load_steps=86 format=3 uid="uid://b43thl6y1mqv6"]
-
 
 [ext_resource type="Script" uid="uid://btigi2atrewp7" path="res://src/player/fp_player.gd" id="1_5mybe"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_paxe5"]
@@ -143,17 +139,6 @@ aim = "aim"
 player = NodePath("..")
 metadata/_custom_type_script = "uid://djaba2fh2yby"
 
-
-[node name="aim_sens" type="Node" parent="FP_CameraController"]
-script = ExtResource("8_m6pge")
-command = SubResource("Resource_6xon3")
-metadata/_custom_type_script = "uid://dm1owovrrxpce"
-
-[node name="sens" type="Node" parent="FP_CameraController"]
-script = ExtResource("8_m6pge")
-command = SubResource("Resource_xuem0")
-metadata/_custom_type_script = "uid://dm1owovrrxpce"
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
@@ -162,7 +147,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527665, 1.80261)
 
 [node name="Camera3D_third_person2" type="Camera3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527665, 1.80261)
-
 
 [node name="FootstepsSound" type="Node" parent="." node_paths=PackedStringArray("audio_player", "player")]
 script = ExtResource("8_30v2u")
@@ -236,16 +220,8 @@ metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 [node name="nickname" parent="." instance=ExtResource("82_u78ao")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 pixel_size = 0.01
-
 target = NodePath("..")
-
-
 
 [node name="ItemManager" type="Node" parent="."]
 script = ExtResource("83_3praq")
 metadata/_custom_type_script = "uid://bu34hkehjbqok"
-
-
-[connection signal="on_updated" from="FP_CameraController/aim_sens" to="FP_CameraController" method="_on_aim_sens_on_updated"]
-[connection signal="on_updated" from="FP_CameraController/sens" to="FP_CameraController" method="_on_sens_on_updated"]
-
