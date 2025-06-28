@@ -51,7 +51,6 @@ section_length = 0.06
 [node name="model_crowbar" type="Node3D"]
 
 [node name="mesh" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("TubeTrailMesh_0s3xt")
 
 [node name="1" type="CSGMesh3D" parent="mesh"]
