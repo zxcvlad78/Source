@@ -24,7 +24,6 @@ func _ready() -> void:
 	#normal_sensivity = _cmd_sens.get_value_as_float()
 	#aim_sensivity = _cmd_aim_sens.get_value_as_float()
 	
-	
 	camera.make_current()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -55,7 +54,6 @@ func _input(event: InputEvent) -> void:
 
 		camera.rotation_degrees.x -= (rotation_x * current_sensivity) * .25
 		player.rotation_degrees.y -= (rotation_y * current_sensivity) * .25
-
 
 #func _on_aim_sens_on_updated(command: SD_ConsoleCommand) -> void:
 	#aim_sensivity = _cmd_aim_sens.get_value_as_float()
