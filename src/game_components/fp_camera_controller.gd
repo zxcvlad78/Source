@@ -13,6 +13,8 @@ signal on_camera_switched
 @export_category("Variables")
 @export var current_sensivity:float = 1.0
 @export var is_aiming:bool = false
+@export_group("References")
+@export var arms: Node3D
 
 #@onready var _cmd_aim_sens: SD_ConsoleCommand = $aim_sens.get_command()
 #@onready var _cmd_sens: SD_ConsoleCommand = $sens.get_command()
@@ -54,6 +56,8 @@ func _input(event: InputEvent) -> void:
 
 		camera.rotation_degrees.x -= (rotation_x * current_sensivity) * .25
 		player.rotation_degrees.y -= (rotation_y * current_sensivity) * .25
+		
+		arms.rotation_degrees.x = -camera.rotation_degrees.x
 
 #func _on_aim_sens_on_updated(command: SD_ConsoleCommand) -> void:
 	#aim_sensivity = _cmd_aim_sens.get_value_as_float()

@@ -1,8 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://c26u5te67y4gh"]
+[gd_scene load_steps=22 format=3 uid="uid://c26u5te67y4gh"]
 
 [ext_resource type="PackedScene" uid="uid://b43thl6y1mqv6" path="res://src/player/fp_player.tscn" id="1_5cht5"]
 [ext_resource type="Script" uid="uid://bue6ygnxb6qrv" path="res://addons/simusdev/multiplayer/SD_MPClientNodeSpawner.gd" id="1_dahok"]
-[ext_resource type="Script" path="res://src/game_components/SourcePlayerSpawner.gd" id="2_2m0dh"]
+[ext_resource type="Script" uid="uid://cajygyir1hxw8" path="res://src/game_components/SourcePlayerSpawner.gd" id="2_2m0dh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tvyis"]
 sky_top_color = Color(1, 0.245186, 0.188351, 1)
@@ -64,6 +64,30 @@ noise = SubResource("FastNoiseLite_656ni")
 albedo_texture = SubResource("NoiseTexture2D_43y51")
 uv1_triplanar = true
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_svlou"]
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_n66d5"]
+seamless = true
+as_normal_map = true
+normalize = false
+noise = SubResource("FastNoiseLite_svlou")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ayy3"]
+transparency = 1
+depth_draw_mode = 1
+albedo_color = Color(0, 0.94902, 0.94902, 0.533333)
+roughness = 0.0
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_n66d5")
+refraction_enabled = true
+refraction_texture = SubResource("NoiseTexture2D_n66d5")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_43y51"]
+material = SubResource("StandardMaterial3D_6ayy3")
+size = Vector3(1000, 1, 1000)
+
 [node name="SourceTestLevel" type="Node3D"]
 
 [node name="Entities" type="Node3D" parent="."]
@@ -105,9 +129,9 @@ light_color = Color(1, 0.714868, 0.669018, 1)
 shadow_enabled = true
 
 [node name="floor" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, -0.8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.15, -0.8)
 use_collision = true
-size = Vector3(100, 0.1, 100)
+size = Vector3(100, 2, 100)
 material = SubResource("StandardMaterial3D_svlou")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
@@ -135,3 +159,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 1.8, -0.1)
 radius = 1.064
 height = 2.685
 material = SubResource("StandardMaterial3D_tolsv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.89, 0)
+mesh = SubResource("BoxMesh_43y51")

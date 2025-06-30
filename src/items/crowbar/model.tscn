@@ -12,6 +12,7 @@ noise_type = 5
 frequency = 0.3525
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_51r34"]
+resource_name = "_albedo"
 color_ramp = SubResource("Gradient_kg7iw")
 noise = SubResource("FastNoiseLite_a7a8y")
 
@@ -33,6 +34,7 @@ noise_type = 5
 frequency = 0.4659
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vwsgf"]
+resource_name = "_albedo"
 seamless = true
 color_ramp = SubResource("Gradient_bf4hq")
 noise = SubResource("FastNoiseLite_tmaro")

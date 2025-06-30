@@ -1,6 +1,8 @@
 @tool
 class_name BaseItem extends Node3D
 
+signal used
+
 @export var item_resource:R_Item
 @export var setup:bool = false : set = _setup
 
@@ -13,7 +15,8 @@ func _setup(value:bool):
 	
 	if is_instance_valid(model):
 		model.queue_free()
-		model = item_resource.model_scene.instantiate()
+	
+	model = item_resource.model_scene.instantiate()
 	
 	await get_tree().create_timer(0.5).timeout
 	
@@ -22,8 +25,5 @@ func _setup(value:bool):
 	
 	setup = false
 
-func _ready() -> void:
-	pass
-
-func _process(delta: float) -> void:
-	pass
+func _use():
+	used.emit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://b43thl6y1mqv6"]
+[gd_scene load_steps=87 format=3 uid="uid://b43thl6y1mqv6"]
 
 [ext_resource type="Script" uid="uid://btigi2atrewp7" path="res://src/player/fp_player.gd" id="1_5mybe"]
 [ext_resource type="Script" uid="uid://5by2ms76p5wg" path="res://addons/simusdev/multiplayer/SD_MPPropertySynchronizer.gd" id="2_paxe5"]
@@ -83,6 +83,7 @@
 [ext_resource type="Script" uid="uid://b2fidrwvgnri2" path="res://addons/simusdev/statemachine/SD_State.gd" id="81_ksn0b"]
 [ext_resource type="PackedScene" uid="uid://bjgedg0gxqwn2" path="res://src/prefabs/nickname/nickname.tscn" id="82_u78ao"]
 [ext_resource type="Script" uid="uid://bu34hkehjbqok" path="res://src/game_components/weapon_manager.gd" id="83_3praq"]
+[ext_resource type="PackedScene" uid="uid://3sw7al0ms0pu" path="res://src/player/fp_arms.tscn" id="84_m6pge"]
 
 [sub_resource type="Resource" id="Resource_yc5r5"]
 script = ExtResource("4_igmvy")
@@ -131,11 +132,12 @@ state_machine = NodePath("../state_machine")
 player = NodePath("..")
 metadata/_custom_type_script = "uid://blipti8xdfg80"
 
-[node name="FP_CameraController" type="Node" parent="." node_paths=PackedStringArray("camera", "third_person_camera", "player")]
+[node name="FP_CameraController" type="Node" parent="." node_paths=PackedStringArray("camera", "third_person_camera", "arms", "player")]
 script = ExtResource("4_3xtqa")
 camera = NodePath("../Camera3D")
 third_person_camera = NodePath("../Camera3D/Camera3D_third_person")
 aim = "aim"
+arms = NodePath("../arms")
 player = NodePath("..")
 metadata/_custom_type_script = "uid://djaba2fh2yby"
 
@@ -217,7 +219,7 @@ process_mode = 4
 script = ExtResource("81_ksn0b")
 metadata/_custom_type_script = "uid://b2fidrwvgnri2"
 
-[node name="nickname" parent="." instance=ExtResource("82_u78ao")]
+[node name="nickname" parent="." node_paths=PackedStringArray("target") instance=ExtResource("82_u78ao")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 pixel_size = 0.01
 target = NodePath("..")
@@ -225,3 +227,6 @@ target = NodePath("..")
 [node name="ItemManager" type="Node" parent="."]
 script = ExtResource("83_3praq")
 metadata/_custom_type_script = "uid://bu34hkehjbqok"
+
+[node name="arms" parent="." instance=ExtResource("84_m6pge")]
+transform = Transform3D(-0.05, 0, -4.37114e-09, 0, 0.05, 0, 4.37114e-09, 0, -0.05, 0, 1.5, 0)
